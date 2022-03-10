@@ -1,0 +1,3 @@
+FILE_STORAGE_API_KEY=my-secret-key
+FILE_STORAGE_API_URL=https://my-file-host-api.url
+FILE_STORAGE_EXTERNAL_URL=https://hello-friend-have-a-file.url
