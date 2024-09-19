@@ -37,7 +37,7 @@ function upload() {
 
     curl --request PUT \
         --url "$FILE_STORAGE_API_URL/$1/$2" \
-        --header "AccessKey: 0$FILE_STORAGE_API_KEY" \
+        --header "AccessKey: $FILE_STORAGE_API_KEY" \
         --header "Content-Type: application/octet-stream" \
         --header "accept: application/json"  \
         --data-binary "@$2"
