@@ -1,7 +1,7 @@
 # Common aliases.
 # Add `source ~/.aliases.sh` to your shell cfg.
 
-export PATH=$PATH:$HOME/bin:$HOME/.cargo/bin
+export PATH=$PATH:$HOME/bin:$HOME/.cargo/bin:$HOME/.local/bin
 export HISTSIZE=100
 
 # jump 1 word with ctrl-arrow in some terminals
