@@ -53,6 +53,16 @@ function upload_all() {
     done
 }
 
+function randomize_filenames() {
+    for X in *; do
+        if [ -f "$X" ]; then
+            EXT="${X##*.}"
+            FILENAME=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 16)
+            mv --no-clobber --verbose "$X" "$FILENAME.$EXT"
+        fi
+    done
+}
+
 alias remove_exif="mogrify -verbose -strip *.jpg"
 
 alias tf2="steam -applaunch 440 -noborder -windowed -w 1920 -h 1080 +fps_max 240"
