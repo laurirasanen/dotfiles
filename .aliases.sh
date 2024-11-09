@@ -12,7 +12,8 @@ function screen_brightness_wlroots() {
     brightness="${1:-1}"
     temp="${2:-6500}"
 
-    gammastep -b "$brightness" -O "$temp"
+    pkill -f "gammastep"
+    gammastep -b "$brightness" -O "$temp" &
 }
 function screen_brightness_x11() {
     redshift -x
