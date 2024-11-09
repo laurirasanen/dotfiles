@@ -16,18 +16,21 @@ set $right l
 # Your preferred terminal emulator
 set $term alacritty
 # Your preferred application launcher
-set $menu tofi
+set $menu bemenu-run
+
+### startup
+exec ~/bin/mouse.sh
 
 ### Output configuration
 #
 # wallpaper
 output * bg ~/Pictures/Wallpapers/japan.png fill
-#
-# Example configuration:
-#
-#   output HDMI-A-1 resolution 1920x1080 position 1920,0
-#
+
+# monitors
 # You can get the names of your outputs by running: swaymsg -t get_outputs
+output DP-3 resolution 3440x1440 position 0,0
+output DP-1 resolution 1920x1080 position 3440,0
+
 
 ### Idle configuration
 #
@@ -77,7 +80,7 @@ output * bg ~/Pictures/Wallpapers/japan.png fill
     floating_modifier $mod normal
 
     # Reload the configuration file
-    bindsym $mod+Shift+c reload
+    bindsym $mod+Shift+r reload
 
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
