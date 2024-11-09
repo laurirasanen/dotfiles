@@ -8,7 +8,13 @@ export HISTSIZE=100
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 
-function screen_brightness() {
+function screen_brightness_wlroots() {
+    brightness="${1:-1}"
+    temp="${2:-6500}"
+
+    gammastep -b "$brightness" -O "$temp"
+}
+function screen_brightness_x11() {
     redshift -x
 
     brightness="${1:-1}"
@@ -18,6 +24,13 @@ function screen_brightness() {
     xrandr --output DP-3 --brightness "$brightness"
 
     redshift -O "$temp"
+}
+function screen_brightness() {
+    if [ "$XDG_SESSION_TYPE" = "x11" ]; then
+        screen_brightness_x11 "$@"
+    else
+        screen_brightness_wlroots "$@"
+    fi
 }
 alias sb=screen_brightness
 
