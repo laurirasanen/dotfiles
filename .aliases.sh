@@ -8,6 +8,12 @@ export HISTSIZE=100
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 
+function update_system() {
+    sudo pacman -Syu
+    yay -Syu
+    rustup update
+}
+
 function screen_brightness_wlroots() {
     brightness="${1:-1}"
     temp="${2:-6500}"
