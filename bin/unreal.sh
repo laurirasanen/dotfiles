@@ -11,5 +11,5 @@ if [[ ${#PROJECTS[@]} -gt 0 ]]; then
     echo "Found project, passing to cli: '$ADDITIONAL'"
 fi
 
-"$HOME/UnrealEngine/UE_5-4-2/Engine/Binaries/Linux/UnrealEditor" $ADDITIONAL
+"$HOME/UnrealEngine/UE_5-5-0/Engine/Binaries/Linux/UnrealEditor" $ADDITIONAL
 

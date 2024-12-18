@@ -8,7 +8,40 @@ export HISTSIZE=100
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 
-function update_system() {
+function process-audio() {
+    if [ "$#" -ne 1 ]; then
+        echo "Invalid number of parameters"
+        echo "usage: process-audio <source>"
+        return
+    fi
+
+    COMPRESSED="${1%.*}-cmp.wav"
+    NORMALIZED="${1%.*}-norm.mp3"
+
+    echo ""
+    echo "COMPRESSING"
+    ffmpeg -i "$1" \
+      -c:a pcm_s16le \
+      -af "acompressor=threshold=-24dB:attack=3:release=20:ratio=3" \
+      "$COMPRESSED"
+
+    echo ""
+    echo "NORMALIZING"
+    ffmpeg-normalize "$COMPRESSED" \
+        -o "$NORMALIZED" \
+        -c:a mp3 \
+        -b:a 128k \
+        -ar 44100 \
+        -t -16 \
+        -tp -2 \
+        -lrt 7 \
+        --dual-mono \
+        -f -pr
+
+    rm "$COMPRESSED"
+}
+
+function update-system() {
     sudo pacman -Syu
     yay -Syu
     rustup update
@@ -73,7 +106,7 @@ function upload_all() {
     done
 }
 
-function randomize_filenames() {
+function randomize-filenames() {
     for X in *; do
         if [ -f "$X" ]; then
             EXT="${X##*.}"

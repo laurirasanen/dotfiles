@@ -68,6 +68,8 @@ sudo pacman -S \
     zsh \
     eza
 
+pipx install ffmpeg-normalize
+
 # yay :)
 read -p "install yay? [y/N]" prompt
 if [[ $prompt == "y" ]]; then
